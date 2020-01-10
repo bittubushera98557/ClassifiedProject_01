@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             xmlns:app="http://schemas.android.com/apk/res-auto"
+             android:layout_width="match_parent"
+             android:id="@+id/fl_myAccountFragment"
+             android:layout_height="match_parent"
+             tools:context=".Fragments.MyAccountFragment">
+    <LinearLayout
+            android:id="@+id/ll_notLoggedIn"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_margin="20dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+    >
+        <ImageView android:layout_width="100dp"
+                   android:layout_height="100dp"
+                   android:layout_gravity="center"
+                   app:srcCompat="@drawable/ic_bad_face"
+                   android:tint="@color/colorGrey"/>
+        <TextView
+                android:layout_width="match_parent"
+                android:gravity="center"
+                android:textColor="@color/colorGrey"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:layout_marginTop="10dp"
+                android:text="Sorry! You Are Not LoggedIn  (My Account) "/>
+        <TextView
+                android:id="@+id/tv_login"
+                android:layout_width="match_parent"
+                android:layout_marginTop="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/rectangle_rouded"
+                android:backgroundTint="@color/colorPrimary"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textColor="@color/colorWhite"
+                android:hint="Continue For Login"
+                android:textSize="22sp"
+                android:textColorHint="@color/colorWhite"
+                app:boxStrokeColor="@color/colorWhite"
+        />
+
+    </LinearLayout>
+    <LinearLayout android:layout_width="match_parent"
+                  android:id="@+id/ll_loggedInVw"
+                  android:layout_height="match_parent">
+        <ScrollView android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+            <LinearLayout android:layout_width="match_parent"
+                          android:gravity="center"
+                          android:layout_gravity="center"
+                          android:layout_height="match_parent"
+                          android:layout_margin="20dp"
+                          android:orientation="vertical"
+            >
+                <ImageView android:layout_width="150dp"
+                           android:layout_height="150dp"
+                           android:layout_gravity="center"
+                           app:srcCompat="@drawable/app_logo"
+                           android:layout_margin="10dp"
+                />
+                <LinearLayout
+                        android:layout_width="match_parent"
+               android:layout_marginTop="20dp"         android:layout_height="wrap_content"
+                        android:id="@+id/ll_regVw"
+                        android:orientation="vertical"
+                >
+
+                    <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                            android:id="@+id/txtInptLyt_proName"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:background="@drawable/rectangle_rouded"
+                            android:backgroundTint="@color/colorGrey"
+                            android:hint="Name"
+                            android:textColorHint="#E28F76"
+                            app:boxStrokeColor="@color/colorWhite">
+
+                        <EditText
+                                android:id="@+id/et_proName"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:imeOptions="actionNext"
+                                android:inputType="text"
+                                android:paddingLeft="15dp"
+                                android:paddingRight="15dp"
+                                android:singleLine="true"
+                                android:textColor="@color/colorWhite"
+                                android:textSize="14dp"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                            android:id="@+id/txtInptLyt_proEmail"
+                            android:layout_marginTop="10dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:background="@drawable/rectangle_rouded"
+                            android:backgroundTint="@color/colorGrey"
+                            android:hint="Email "
+                            android:textColorHint="#E28F76"
+                            app:boxStrokeColor="@color/colorWhite">
+
+
+                        <EditText
+                                android:id="@+id/et_proEmail"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:imeOptions="actionNext"
+                                android:inputType="textEmailAddress"
+                                 android:paddingLeft="15dp"
+                                android:paddingRight="15dp"
+                                android:singleLine="true"
+                                android:textColor="@color/colorWhite"
+                                android:textSize="14dp"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                            android:id="@+id/txtInptLyt_proPhone"
+                            android:layout_marginTop="10dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:background="@drawable/rectangle_rouded"
+                            android:backgroundTint="@color/colorGrey"
+                            android:hint="Mobile Number "
+                            android:textColorHint="#E28F76"
+                            app:boxStrokeColor="@color/colorWhite">
+
+
+                        <EditText
+                                android:id="@+id/et_proPhone"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:imeOptions="actionNext"
+                                android:inputType="number"
+                                android:paddingLeft="15dp"
+                                android:maxLength="10"
+                                android:paddingRight="15dp"
+                                android:singleLine="true"
+                                android:textColor="@color/colorWhite"
+                                android:textSize="14dp"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                            android:id="@+id/txtInptLyt_proPsd"
+                            android:layout_marginTop="10dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:visibility="gone"
+                            android:background="@drawable/rectangle_rouded"
+                            android:backgroundTint="@color/colorGrey"
+                            android:hint="Password"
+                            android:textColorHint="#E28F76"
+                            app:boxStrokeColor="@color/colorWhite">
+
+
+                        <EditText
+                                android:id="@+id/et_proPsd"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:imeOptions="actionNext"
+                                android:inputType="textPassword"
+                                android:paddingLeft="15dp"
+                                android:paddingRight="15dp"
+                                android:singleLine="true"
+                                android:textColor="@color/colorWhite"
+                                android:textSize="14dp"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+                    <TextView
+                            android:id="@+id/tv_submitProfile"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="20dp"
+                            android:layout_height="50dp"
+                            android:background="@drawable/rectangle_rouded"
+                            android:backgroundTint="@color/colorPrimary"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:textColor="@color/colorWhite"
+                            android:hint="Submit"
+                            android:textSize="22sp"
+                            android:textColorHint="@color/colorWhite"
+                            app:boxStrokeColor="@color/colorWhite"
+                    />
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+</FrameLayout>

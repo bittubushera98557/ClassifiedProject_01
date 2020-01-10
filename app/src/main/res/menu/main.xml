@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+            android:id="@+id/action_addNewAdvert"
+            android:orderInCategory="100"
+            android:title="@string/add_new_ads"
+            app:actionLayout="@layout/view_alertsbadge"
+            app:showAsAction="always" />
+
+
+    <item
+            android:id="@+id/action_call"
+            android:orderInCategory="100"
+            android:icon="@drawable/ic_call"
+             android:title="Call"
+             android:iconTint="@color/colorWhite"
+            app:showAsAction="always" />
+</menu>

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+             android:id="@+id/ll_homeFragment"
+             xmlns:app="http://schemas.android.com/apk/res-auto"
+              tools:context=".Fragments.HomeFragment">
+<LinearLayout android:layout_width="match_parent"
+              android:weightSum="100"
+              android:orientation="vertical"
+              android:background="#DADADA"
+              android:layout_height="match_parent">
+
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="0dp"
+android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                 android:paddingTop="10dp"
+                  android:layout_weight="8"
+    android:weightSum="100"
+                  android:orientation="horizontal"
+    >
+<ImageView android:layout_width="0dp"
+           android:layout_height="match_parent"
+android:layout_weight="10"
+           app:srcCompat="@drawable/ic_location"
+/>
+        <TextView android:layout_width="0dp"
+                  android:layout_height="match_parent"
+       android:layout_marginLeft="10dp"
+                  android:layout_weight="90"
+        android:id="@+id/tv_location"
+                  android:text="Current Location"
+      android:gravity="center_vertical"  />
+
+    </LinearLayout>
+
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="0dp"
+                  android:layout_weight="8"
+                 android:layout_margin="5dp"
+    android:background="@drawable/rounded_rect_black"
+    android:weightSum="100"
+    >
+       <LinearLayout
+               android:layout_width="0dp"
+
+               android:layout_marginLeft="5dp"
+               android:layout_height="match_parent"
+               android:layout_weight="10">
+           <ImageView android:layout_width="match_parent"
+                      android:layout_height="match_parent"
+                       app:srcCompat="@drawable/ic_search"
+           />
+
+
+       </LinearLayout>
+        <EditText android:layout_width="0dp"
+                  android:layout_height="match_parent"
+             android:layout_margin="1dp"
+                  android:layout_weight="90"
+                  android:background="#FFFFFF"
+                  android:id="@+id/et_location"
+       android:textSize="14dp"
+                  android:hint="Find cars, mobile phone and more.."
+                  android:gravity="center_vertical"  />
+
+
+    </LinearLayout>
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="0dp"
+                  android:background="@color/colorWhite"
+                  android:orientation="vertical"
+                  android:layout_weight="84">
+
+        <TextView android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:text="Browse Categories"
+                  android:layout_gravity="center"
+                  android:gravity="left"
+                  android:textSize="18sp"
+                  android:textColor="@color/colorBlack"
+                  android:layout_marginTop="15dp"
+                  android:layout_marginBottom="15dp"
+                  android:layout_marginLeft="5dp"
+                  android:background="@color/colorWhite"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_mainCat"
+                android:layout_width="match_parent"
+                android:background="@color/colorWhite"
+                android:layout_height="match_parent"
+
+        />
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/tvNoData"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textColor="@color/colorPrimary"
+                android:text="No Data Found"
+        />
+
+
+    </LinearLayout>
+</LinearLayout>
+</FrameLayout>
