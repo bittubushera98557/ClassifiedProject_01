@@ -32,43 +32,60 @@
                 android:layout_margin="3dp"
                 android:layout_weight="60"
                 android:orientation="vertical">
-           <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-           android:orientation="vertical">
+            <LinearLayout android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:orientation="vertical">
 
-               <FrameLayout android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:layout_gravity="right"
-                            android:gravity="right">
-                   <TextView android:layout_width="wrap_content"
+                <FrameLayout android:layout_width="match_parent"
                              android:layout_height="wrap_content"
-                             android:id="@+id/tv_advertisePrice"
-                             android:layout_gravity="center_vertical"
-                             android:text="234"
-                             android:textSize="18sp"
-                             android:textColor="@color/colorBlack"
-                             android:textStyle="bold"/>
-                   <ImageView android:layout_width="30dp" android:layout_height="30dp"
-                              app:srcCompat="@drawable/ic_favorite"
-                              android:layout_gravity="right"
-                   />
-               </FrameLayout>
-               <TextView android:layout_width="match_parent"
-                         android:layout_height="wrap_content"
-                         android:id="@+id/tv_advertiseDesc"
-                         android:textSize="18sp"
-                         android:textColor="@color/colorBlack"
-                         android:text="IT IS description of add"
+                             android:orientation="horizontal"
+                             android:layout_gravity="right"
+                             android:gravity="right">
+                    <TextView android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:id="@+id/tv_advertisePrice"
+                              android:layout_marginRight="5dp"
+                              android:layout_gravity="center_vertical"
+                              android:text="234"
+                              android:textSize="16sp"
+                              android:textColor="@color/colorBlack"
+                              android:textStyle="bold"/>
+                    <LinearLayout android:layout_width="30dp"
+                                  android:layout_height="30dp"
+                                  android:backgroundTint="@color/colorWhite"
+                                  android:background="@color/colorWhite"
+                                  android:layout_gravity="right"
+                    >
+                        <ImageView android:layout_width="match_parent"
+                                   android:layout_height="match_parent"
+                                   app:srcCompat="@drawable/ic_favorite_empty"
+                        />
+                    </LinearLayout>
+                </FrameLayout>
+                <TextView android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:id="@+id/tv_advertiseDesc"
+                          android:textSize="15sp"
+                          android:textColor="@color/colorBlack"
+                          android:text="IT IS description of add"
 
-               />
-           </LinearLayout>
+                />
+                <TextView android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:id="@+id/tv_advertiseMoreInfo"
+                          android:textSize="15sp"
+                          android:textColor="@color/colorBlack"
+                          android:text="IT IS description of add"
+
+                />
+            </LinearLayout>
             <TextView android:layout_width="match_parent"
                       android:layout_height="wrap_content"
                       android:id="@+id/tv_advertiseDate"
-                      android:textSize="18sp"
-                      android:textColor="@color/colorBlack"
-                      android:text="IT IS description of add"
-android:layout_gravity="bottom"
+                      android:textSize="14sp"
+                      android:textColor="@color/colorGrey"
+                      android:text="Today"
+                      android:layout_gravity="bottom"
                       android:gravity="right"
             />
         </FrameLayout>

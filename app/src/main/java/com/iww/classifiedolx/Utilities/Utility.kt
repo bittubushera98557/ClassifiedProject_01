@@ -162,7 +162,7 @@ object Utility {
     fun dialog(ctx : Context) : Dialog{
         val dialog =   Dialog(ctx as Activity)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        dialog.setCancelable(false)
+        dialog.setCancelable(true)
         dialog.setContentView(R.layout.progress_dialog)
         dialog.show()
         return dialog

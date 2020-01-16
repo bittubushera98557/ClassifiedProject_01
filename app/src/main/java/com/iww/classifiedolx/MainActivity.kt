@@ -1,8 +1,10 @@
 package com.iww.classifiedolx
 
+import android.content.Intent
 import android.graphics.PorterDuff
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -19,10 +21,8 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
-import com.iww.classifiedolx.Fragments.FavouriteFragment
-import com.iww.classifiedolx.Fragments.HomeFragment
-import com.iww.classifiedolx.Fragments.MyAccountFragment
-import com.iww.classifiedolx.Fragments.MyAdsFragment
+import com.iww.classifiedolx.Fragments.*
+import com.iww.classifiedolx.Fragments.AddAdvertise.AllMainCatForAdd
 import com.iww.classifiedolx.Listeners.OnFragmentInteractionListener
 import com.iww.classifiedolx.Utilities.SharedPref
 import com.iww.classifiedolx.Utilities.Utility
@@ -30,16 +30,22 @@ import kotlinx.android.synthetic.main.activity_login_signup_screen.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.content_main.*
+import java.lang.Exception
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener,
     OnFragmentInteractionListener, FragmentManager.OnBackStackChangedListener {
     override fun onBackStackChanged() {
-        if (supportFragmentManager.backStackEntryCount > 0) {
+        if(supportFragmentManager.backStackEntryCount >0){
+            toggle?.isDrawerIndicatorEnabled = false
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
             supportActionBar?.setDisplayShowHomeEnabled(true)
-        } else {
+            toggle?.toolbarNavigationClickListener = navigationBackPressListener
+        }
+        else {
             supportActionBar?.setDisplayHomeAsUpEnabled(false)
             supportActionBar?.setDisplayShowHomeEnabled(false)
+            toggle?.isDrawerIndicatorEnabled = true
+            toggle?.toolbarNavigationClickListener = toggle?.toolbarNavigationClickListener
         }
     }
 
@@ -57,19 +63,17 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
         sharedPref=SharedPref(this@MainActivity)
 
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
-        val navView: NavigationView = findViewById(R.id.nav_view)
-        val toggle = ActionBarDrawerToggle(
+          toggle = ActionBarDrawerToggle(
             this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close
         )
-        drawerLayout.addDrawerListener(toggle)
-        toggle.syncState()
+        drawerLayout.addDrawerListener(toggle!!)
+        toggle!!.syncState()
 
-        navView.setNavigationItemSelectedListener(this)
+        nav_view.setNavigationItemSelectedListener(this)
         mPagerAdapter = ScreenSlidePagerAdapter(supportFragmentManager)
 
         view_pager.offscreenPageLimit = NUM_PAGES!!
@@ -78,31 +82,40 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         view_pager!!.setPagingEnabled(false)
         supportFragmentManager.addOnBackStackChangedListener(this)
         supportActionBar!!.title = "Home"
-  setTitleBarData()
 
         if(sharedPref!!.userId!="") {
-            val header = navView.getHeaderView(0)
+            val header = nav_view.getHeaderView(0)
             var tv_loggedEmail = header.findViewById<TextView>(R.id.tv_sidebarEmail)
             tv_loggedEmail.text = "" + sharedPref!!.email
             var tv_loggedName = header.findViewById<TextView>(R.id.tv_sidebarName)
             tv_loggedName.text = "Welcome :  " + sharedPref!!.name
         }
+try {
+    getOldIntentData()
+}
+catch (exp:Exception)
+{
+
+}
     }
 
-    private fun setTitleBarData() {
-     if(supportFragmentManager.backStackEntryCount >1){
-                toggle?.isDrawerIndicatorEnabled = false
-                supportActionBar?.setDisplayHomeAsUpEnabled(true)
-                supportActionBar?.setDisplayShowHomeEnabled(true)
-                toggle?.toolbarNavigationClickListener = navigationBackPressListener
-            }
-            else {
-                supportActionBar?.setDisplayHomeAsUpEnabled(false)
-                supportActionBar?.setDisplayShowHomeEnabled(false)
-                toggle?.isDrawerIndicatorEnabled = true
-                toggle?.toolbarNavigationClickListener = toggle?.toolbarNavigationClickListener
-            }
-  }
+    private fun getOldIntentData() {
+        if (getIntent().hasExtra("tab")) {
+            var setTabNum = getIntent().getStringExtra("tab");
+       if(setTabNum.equals("3"))
+       {
+           supportActionBar!!.title = "My Ads"
+           if (supportFragmentManager.backStackEntryCount > 0)
+               supportFragmentManager.popBackStack()
+           view_pager.setCurrentItem(3, true)
+           bottomNavigation.getMenu().getItem(3).setChecked(true);
+       }
+        } else {
+            throw  IllegalArgumentException("Activity cannot find  extras " + "tab");
+        }
+
+    }
+
     private val navigationBackPressListener = View.OnClickListener { v ->
         onBackPressed()
 
@@ -124,18 +137,25 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     view_pager.setCurrentItem(1, true)
                     return@OnNavigationItemSelectedListener true
                 }
-                R.id.bottom_navigation_myads -> {
-                    supportActionBar!!.title = "My Ads"
+                R.id.bottom_navigation_sell -> {
+                    supportActionBar!!.title = "Sell"
                     if (supportFragmentManager.backStackEntryCount > 0)
                         supportFragmentManager.popBackStack()
                     view_pager.setCurrentItem(2, true)
                     return@OnNavigationItemSelectedListener true
                 }
-                R.id.bottom_navigation_myaccount -> {
-                    supportActionBar!!.title = "My Account"
+                R.id.bottom_navigation_myads -> {
+                    supportActionBar!!.title = "My Ads"
                     if (supportFragmentManager.backStackEntryCount > 0)
                         supportFragmentManager.popBackStack()
                     view_pager.setCurrentItem(3, true)
+                    return@OnNavigationItemSelectedListener true
+                }
+                R.id.bottom_navigation_myaccount -> {
+                    supportActionBar!!.title = "Account"
+                    if (supportFragmentManager.backStackEntryCount > 0)
+                        supportFragmentManager.popBackStack()
+                    view_pager.setCurrentItem(4, true)
                     return@OnNavigationItemSelectedListener true
                 }
             }
@@ -149,7 +169,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START)
         }
-        else if( supportFragmentManager.backStackEntryCount>1) {
+        else if( supportFragmentManager.backStackEntryCount>0) {
             super.onBackPressed()
 
         }
@@ -159,10 +179,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             //    bottomNavigation.selectedItemId = view_pager.currentItem - 1;
             view_pager.setCurrentItem(view_pager.currentItem - 1, true)
             bottomNavigation.getMenu().getItem(view_pager.currentItem).setChecked(true);
-            if (view_pager.currentItem == 3)
-                supportActionBar!!.title = "My Account"
-            else if (view_pager.currentItem == 2)
+if (view_pager.currentItem == 4)
+                supportActionBar!!.title = "Account"
+
+else             if (view_pager.currentItem == 3)
                 supportActionBar!!.title = "My Ads"
+            else if (view_pager.currentItem == 2)
+                supportActionBar!!.title = "Sell"
             else if (view_pager.currentItem == 1)
                 supportActionBar!!.title = "Favourite"
             else if (view_pager.currentItem == 0)
@@ -175,7 +198,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.main, menu)
-  var yourdrawable = menu.getItem(1).getIcon(); // change 0 with 1,2 ...
+  var yourdrawable = menu.getItem(0).getIcon(); // change 0 with 1,2 ...
     yourdrawable.mutate();
     yourdrawable.setColorFilter(getResources().getColor(R.color.colorWhite), PorterDuff.Mode.SRC_IN);
 
@@ -189,16 +212,22 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 Utility.callDialog(this,"9872668896")
                 return true
             }
-            R.id.action_addNewAdvert -> {
-                Utility.snackBar(drawer_layout, "You need to login first"  )
-                Toast.makeText(this@MainActivity,"You need to login first, For add",Toast.LENGTH_LONG).show()
+           /* R.id.action_addNewAdvert -> {
+           Log.e("jkhkh","action_addNewAdvert");
+               Utility.snackBar(drawer_layout, "You need to login first"  )
+               // Toast.makeText(this,"You need to login first, For add",Toast.LENGTH_LONG).show()
 
                 if (sharedPref!!.userId == "") {
                     Utility.snackBar(drawer_layout, "You need to login first"  )
 Toast.makeText(this@MainActivity,"You need to login first, For add",Toast.LENGTH_LONG).show()
                    }
+                else{
+
+                    startActivity(Intent(this@MainActivity,AllMainCatForAdd::class.java))
+
+                }
                  return true
-            }
+            }*/
 
 
             else -> return super.onOptionsItemSelected(item)
@@ -214,18 +243,17 @@ Toast.makeText(this@MainActivity,"You need to login first, For add",Toast.LENGTH
                 bottomNavigation.getMenu().getItem(0).setChecked(true);
             }
             R.id.nav_myAccount -> {
-                view_pager.currentItem =  3
-                supportActionBar!!.title = "My Account"
-                bottomNavigation.getMenu().getItem(3).setChecked(true);
+                view_pager.currentItem =  4
+                supportActionBar!!.title = "Account"
+                bottomNavigation.getMenu().getItem(4).setChecked(true);
             }
             R.id.nav_logout -> {
                 Utility.alertLogoutDialog(this@MainActivity,"Do you want to logout?")
-
             }
             R.id.nav_my_ads -> {
-                view_pager.currentItem = 2
+                view_pager.currentItem = 3
                 supportActionBar!!.title = "My Ads"
-                bottomNavigation.getMenu().getItem(2).setChecked(true);
+                bottomNavigation.getMenu().getItem(3).setChecked(true);
             }
             R.id.nav_share -> {
                 val shareTxtBody =   "The free online marketplace app from Classified assures you of a great shopping experience with a lighter app where you can Buy and Sell, faster load time & wide selection across categories  \n Coming soon ... On Android "
@@ -268,10 +296,14 @@ Toast.makeText(this@MainActivity,"You need to login first, For add",Toast.LENGTH
                 }
 
                 2 -> {
-                    fragment = MyAdsFragment()
+                    fragment = SellFrag()
                     return fragment!!
                 }
                 3 -> {
+                    fragment = MyAdsFragment()
+                    return fragment!!
+                }
+                4 -> {
                     fragment = MyAccountFragment()
                     return fragment!!
                 }

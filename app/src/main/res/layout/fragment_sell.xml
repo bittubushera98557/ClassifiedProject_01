@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+      android:background="@color/colorWhite"
+             android:layout_height="match_parent"
+             android:id="@+id/fl_sellFragment"
+             tools:context=".Fragments.SellFrag">
+
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:weightSum="100"
+                  android:orientation="vertical"
+    >
+<!--
+        <LinearLayout android:layout_width="match_parent"
+                      android:layout_gravity="center_vertical"
+                      android:layout_height="0dp"
+                      android:orientation="horizontal"
+                      android:layout_weight="8"
+        >
+            <ImageView android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_gravity="center_vertical"
+                       android:layout_marginLeft="5dp"
+                       android:src="@drawable/ic_close"
+            />
+            <TextView android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:layout_gravity="center"
+                      android:text="WHAT ARE YOU OFFERING?"
+                      android:gravity="center"
+            />
+
+        </LinearLayout>
+-->
+
+        <LinearLayout android:layout_width="match_parent"
+                      android:layout_height="0dp"
+                      android:background="@color/colorWhite"
+                      android:orientation="vertical"
+                      android:layout_weight="100">
+
+            <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_allMainCat"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+            android:visibility="gone"
+                    android:id="@+id/tvNoData"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textColor="@color/colorPrimary"
+                    android:text="No Data Found"
+            />
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</FrameLayout>

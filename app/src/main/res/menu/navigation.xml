@@ -6,8 +6,12 @@
         android:title="@string/bottom_menu_home" />
     <item
         android:id="@+id/bottom_navigation_favourite"
-        android:icon="@drawable/ic_favorite"
+        android:icon="@drawable/ic_favorite_filled"
         android:title="@string/bottom_menu_favourite" />
+    <item
+            android:id="@+id/bottom_navigation_sell"
+            android:icon="@drawable/ic_create_new"
+            android:title="@string/bottom_menu_sell" />
     <item
         android:id="@+id/bottom_navigation_myads"
         android:icon="@drawable/ic_menu_gallery"

@@ -19,7 +19,7 @@
 
     <string name="bottom_menu_favourite">Favourite</string>
     <string name="bottom_menu_my_ads">My Ads</string>
-    <string name="bottom_menu_myAccount">My Account</string>
+    <string name="bottom_menu_myAccount">Account</string>
 
     <string name="add_new_ads">New Ads</string>
     <string name="no">No</string>
@@ -27,6 +27,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="mapApi_key">AIzaSyC8jFU-yrO7rzRh4gWaMlB3L82U1gDc_3A</string>
 
 
 </resources>

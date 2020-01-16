@@ -57,15 +57,53 @@
                           android:layout_margin="20dp"
                           android:orientation="vertical"
             >
-                <ImageView android:layout_width="150dp"
-                           android:layout_height="150dp"
-                           android:layout_gravity="center"
-                           app:srcCompat="@drawable/app_logo"
-                           android:layout_margin="10dp"
-                />
                 <LinearLayout
                         android:layout_width="match_parent"
-               android:layout_marginTop="20dp"         android:layout_height="wrap_content"
+                        android:layout_height="150dp"
+                />
+                <FrameLayout
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                >
+
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                            android:layout_width="150dp"
+                            android:id="@+id/iv_profile"
+                            android:layout_height="150dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_user"
+                            android:layout_margin="10dp"
+                            app:civ_border_width="2dp"
+                            app:civ_border_color="#FF000000"/>
+
+
+                    <FrameLayout
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:id="@+id/fl_editImg"
+                 android:visibility="gone"
+                            android:layout_gravity="right"
+                            android:layout_marginRight="10dp"
+                            android:background="@drawable/circle_rouded"
+                            android:backgroundTint="@color/colorAccent"
+                            android:layout_marginTop="10dp">
+                        <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_menu_camera"
+                                android:layout_margin="4dp"
+                                android:tint="@color/colorWhite"
+                        />
+
+                    </FrameLayout>
+
+                </FrameLayout>
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="20dp"
+                        android:layout_height="wrap_content"
                         android:id="@+id/ll_regVw"
                         android:orientation="vertical"
                 >
@@ -113,7 +151,7 @@
                                 android:layout_height="wrap_content"
                                 android:imeOptions="actionNext"
                                 android:inputType="textEmailAddress"
-                                 android:paddingLeft="15dp"
+                                android:paddingLeft="15dp"
                                 android:paddingRight="15dp"
                                 android:singleLine="true"
                                 android:textColor="@color/colorWhite"
@@ -145,7 +183,7 @@
                                 android:textColor="@color/colorWhite"
                                 android:textSize="14dp"/>
                     </com.google.android.material.textfield.TextInputLayout>
-                    <com.google.android.material.textfield.TextInputLayout
+                  <!--  <com.google.android.material.textfield.TextInputLayout
                             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                             android:id="@+id/txtInptLyt_proPsd"
                             android:layout_marginTop="10dp"
@@ -171,12 +209,14 @@
                                 android:textColor="@color/colorWhite"
                                 android:textSize="14dp"/>
                     </com.google.android.material.textfield.TextInputLayout>
+                  -->
                     <TextView
                             android:id="@+id/tv_submitProfile"
                             android:layout_width="match_parent"
                             android:layout_marginTop="20dp"
                             android:layout_height="50dp"
                             android:background="@drawable/rectangle_rouded"
+                            android:visibility="gone"
                             android:backgroundTint="@color/colorPrimary"
                             android:layout_gravity="center"
                             android:gravity="center"
@@ -185,9 +225,38 @@
                             android:textSize="22sp"
                             android:textColorHint="@color/colorWhite"
                             app:boxStrokeColor="@color/colorWhite"
+                    />     <TextView
+                            android:id="@+id/tv_editProfile"
+                            android:layout_width="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="right"
+                            android:gravity="right"
+                            android:textColor="@color/colorAccent"
+                            android:text="Edit Profile ?"
+                            android:textSize="22sp"
+                            app:boxStrokeColor="@color/colorWhite"
+                    />
+
+                    <TextView
+                            android:id="@+id/tv_updatePsd"
+                            android:layout_width="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="right"
+                            android:gravity="right"
+                            android:textColor="@color/colorAccent"
+                            android:text="Update Password ?"
+                            android:textSize="22sp"
+                            app:boxStrokeColor="@color/colorWhite"
                     />
 
                 </LinearLayout>
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                         android:layout_height="150dp"
+ />
 
             </LinearLayout>
         </ScrollView>

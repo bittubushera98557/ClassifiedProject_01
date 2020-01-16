@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:app="http://schemas.android.com/apk/res-auto"
+             android:layout_width="300dp"
+             android:layout_height="wrap_content"
+             android:gravity="center"
+             android:layout_gravity="center"
+             android:orientation="vertical"
+             android:background="@drawable/rectangle_rouded"
+             android:backgroundTint="@color/colorWhite"
+>
+
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:padding="20dp"
+                  android:orientation="vertical"
+    >
+        <TextView android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:textColor="@color/colorBlack"
+                  android:layout_gravity="center"
+                  android:text="Update Password "
+                  android:textSize="16sp"
+                  android:gravity="center"
+        />
+
+        <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                android:layout_marginTop="20dp"
+                android:id="@+id/txtInptLyt_oldPsd"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/rectangle_rouded"
+                app:passwordToggleEnabled="true"
+                app:passwordToggleTint="@color/colorAccent"
+                android:backgroundTint="@color/colorGrey"
+                 android:hint="Old Password"
+                android:textColorHint="#615959"
+                app:boxStrokeColor="@color/colorWhite">
+
+
+            <EditText
+                    android:id="@+id/et_oldPsd"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:imeOptions="actionNext"
+                    android:gravity="center|left"
+                    android:inputType="textPassword"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:singleLine="true"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="14dp"/>
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                android:layout_marginTop="20dp"
+                android:id="@+id/txtInptLyt_newPsd"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/rectangle_rouded"
+                android:backgroundTint="@color/colorGrey"
+                android:hint="New Password"
+                app:passwordToggleEnabled="true"
+                app:passwordToggleTint="@color/colorAccent"
+                android:textColorHint="#615959"
+                app:boxStrokeColor="@color/colorWhite">
+
+
+            <EditText
+                    android:id="@+id/et_newPsd"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:imeOptions="actionNext"
+                    android:gravity="center|left"
+                    android:inputType="textPassword"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:singleLine="true"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="14dp"/>
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                android:layout_marginTop="20dp"
+                android:id="@+id/txtInptLyt_confirmPsd"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/rectangle_rouded"
+                android:backgroundTint="@color/colorGrey"
+                android:hint="Confirm Password"
+                app:passwordToggleEnabled="true"
+                app:passwordToggleTint="@color/colorAccent"
+                android:textColorHint="#615959"
+                app:boxStrokeColor="@color/colorWhite">
+
+
+            <EditText
+                    android:id="@+id/et_confirmPsd"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:imeOptions="actionDone"
+                    android:gravity="center|left"
+                    android:inputType="textPassword"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:singleLine="true"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="14dp"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+                android:id="@+id/tv_submitUpdatePsd"
+                android:layout_width="match_parent"
+                android:layout_marginTop="15dp"
+                android:layout_height="50dp"
+                android:background="@drawable/rectangle_rouded"
+                android:backgroundTint="@color/colorPrimary"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textColor="@color/colorWhite"
+                android:hint="Submit"
+                android:textSize="22sp"
+                android:textColorHint="@color/colorWhite"
+                app:boxStrokeColor="@color/colorWhite"
+        />
+
+        <LinearLayout android:layout_width="match_parent"
+                      android:layout_height="15dp">
+
+        </LinearLayout>
+
+    </LinearLayout>
+    <ImageView android:layout_width="30dp"
+               android:layout_height="30dp"
+               android:id="@+id/iv_close"
+               android:background="@drawable/ic_close"
+               android:layout_gravity="right"
+               android:layout_marginTop="15dp"
+               android:layout_marginRight="15dp"
+               android:backgroundTint="@color/colorPrimary"
+    />
+    <!--    <ProgressBar
+                android:visibility="gone"
+                android:layout_gravity="center"
+                android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />-->
+</FrameLayout>

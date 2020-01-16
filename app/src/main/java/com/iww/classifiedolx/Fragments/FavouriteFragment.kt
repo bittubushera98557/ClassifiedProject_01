@@ -38,8 +38,6 @@ class FavouriteFragment: Fragment(), View.OnClickListener {
         {
             R.id.tv_login ->
             {
-              /*  Utility.enterNextReplaceFragment(R.id.fl_favouriteFragment,
-                    LoginFrag.newInstance("",""),(ctx as MainActivity).supportFragmentManager)*/
                 startActivity(Intent(context,LoginSignupScreen::class.java))
 
             }

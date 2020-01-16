@@ -30,6 +30,7 @@ import kotlinx.android.synthetic.main.item_main_category.view.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.lang.Exception
 import javax.inject.Inject
 
 // TODO: Rename parameter arguments, choose names that match
@@ -81,17 +82,92 @@ class SubCateBaseAdd : Fragment() {
             circularProgressDrawable.strokeWidth = 5f
             circularProgressDrawable.centerRadius = 30f
             circularProgressDrawable.start()
-            Picasso.with(context).load(Uri.parse(AppConstants.IMAGE_Ad_Images+it1.imageUpload1)).placeholder(circularProgressDrawable).error(R.drawable.app_logo).into(this.iv_advertiseImg)
 
-            tv_advertisePrice.text = it1.discrption
-            tv_advertiseDate.text = "12-04-2019"
+            var strImgUrl = ""
+            if (!it1.imageUpload1.equals("")) {
+                strImgUrl = it1.imageUpload1
+            } else if (!it1.imageUpload2.equals("")) {
+                strImgUrl = it1.imageUpload2
+            } else if (!it1.imageUpload3.equals("")) {
+                strImgUrl = it1.imageUpload3
+
+            } else if (!it1.imageUpload4.equals("")) {
+                strImgUrl = it1.imageUpload4
+            }
+            Picasso.with(context).load(Uri.parse(AppConstants.IMAGE_Ad_Images + strImgUrl))
+                .placeholder(circularProgressDrawable).error(R.drawable.app_logo).into(this.iv_advertiseImg)
+
+
+            tv_advertisePrice.text = it1.title
+            tv_advertiseDate.text = it1.date
+            tv_advertiseDesc.text = it1.discrption
+
+            var strFeatured = ""
+            try {
+                if (it1.featField1.equals("1")) {
+                    if (!it1.field1.equals("")) {
+                        strFeatured = strFeatured + it1.field1
+                        if (!it1.fieldSecond1.equals(""))
+                            strFeatured = strFeatured + " " + it1.fieldSecond1
+                        strFeatured = strFeatured + " - "
+
+                    }
+                }
+                if (it1.featField2.equals("1")) {
+                    if (!it1.field2.equals("")) {
+                        strFeatured = strFeatured + it1.field2
+                        if (!it1.fieldSecond2.equals(""))
+                            strFeatured = strFeatured + " " + it1.fieldSecond2
+                        strFeatured = strFeatured + " - "
+                    }
+                }
+
+                if (it1.featField3.equals("1")) {
+                    if (!it1.field3.equals("")) {
+                        strFeatured = strFeatured + it1.field3
+                        if (!it1.fieldSecond3.equals(""))
+                            strFeatured = strFeatured + " " + it1.fieldSecond3
+                        strFeatured = strFeatured + " - "
+                    }
+                }
+                if (it1.featField4.equals("1")) {
+                    if (!it1.field4.equals("")) {
+                        strFeatured = strFeatured + it1.field4
+                        if (!it1.fieldSecond4.equals(""))
+                            strFeatured = strFeatured + " " + it1.fieldSecond4
+                        strFeatured = strFeatured + " - "
+                    }
+                }
+
+                if (it1.featField5.equals("1")) {
+                    if (!it1.field5.equals("")) {
+                        strFeatured = strFeatured + it1.field5
+                        if (!it1.fieldSecond5.equals(""))
+                            strFeatured = strFeatured + " " + it1.fieldSecond5
+                        strFeatured = strFeatured + " - "
+                    }
+                }
+                if (it1.featField6.equals("1")) {
+                    if (!it1.field6.equals("")) {
+                        strFeatured = strFeatured + it1.field6
+                        if (!it1.fieldSecond6.equals(""))
+                            strFeatured = strFeatured + " " + it1.fieldSecond6
+                        strFeatured = strFeatured + " - "
+                    }
+                }
+            }
+            catch (exp: Exception)
+            {
+
+            }
+            tv_advertiseMoreInfo.text=strFeatured
 
             this.ll_advertItemLinear.setOnClickListener {
-              /*  Utility.enterNextReplaceFragment(
-                    R.id.fl_subCateBaseAdd,
-                    AdvertisementDetailsFrag.newInstance(  it1.id,""),
-                    (ctx as MainActivity).supportFragmentManager
-                )*/
+                /*  Utility.enterNextReplaceFragment(
+                      R.id.fl_subCateBaseAdd,
+                      AdvertisementDetailsFrag.newInstance(  it1.id,""),
+                      (ctx as MainActivity).supportFragmentManager
+                  )*/
             }
         }, { view1: View, i: Int -> })
         fetchAdvertiseList("get_all_ad")
@@ -103,7 +179,7 @@ class SubCateBaseAdd : Fragment() {
 
     private fun fetchAdvertiseList(strApi: String) {
 
-        apiService!!.fetchAdsList(strApi, mainCatId,subCatId).enqueue(object : Callback<AllApiResponse.AdverResp> {
+        apiService!!.fetchAdsList(strApi, mainCatId, subCatId).enqueue(object : Callback<AllApiResponse.AdverResp> {
             override fun onResponse(
                 call: Call<AllApiResponse.AdverResp>,
                 response: Response<AllApiResponse.AdverResp>

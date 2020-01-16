@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools"
           package="com.iww.classifiedolx">
 
     <uses-permission android:name="android.permission.INTERNET"/>
@@ -14,11 +15,16 @@
             android:allowBackup="true"
             android:icon="@drawable/app_logo"
             android:label="@string/app_name"
-                   android:supportsRtl="true"
+            android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name=".LoginSignupScreen"
-                  android:theme="@style/AppTheme.NoActionBar"
-        >
+        <activity android:name=".AdsDoneActivity"
+                  android:screenOrientation="portrait"
+                  android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+                android:name=".LoginSignupScreen"
+                android:screenOrientation="portrait"
+                android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
                 android:name=".SplashScreen"
@@ -27,6 +33,7 @@
                 android:windowSoftInputMode="adjustPan|adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
+
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
@@ -37,8 +44,22 @@
                 android:theme="@style/AppTheme.NoActionBar"
                 android:windowSoftInputMode="adjustPan|adjustResize">
         </activity>
+
+        <provider
+                android:name=".Utilities.CustomFileProvider"
+                android:authorities="com.iww.classifiedolx.fileprovider"
+                android:exported="false"
+                android:grantUriPermissions="true"
+                tools:replace="android:authorities">
+            <meta-data
+                    android:name="android.support.FILE_PROVIDER_PATHS"
+                    android:resource="@xml/provider_paths"
+                    tools:replace="android:resource"/>
+        </provider>
+
+        <meta-data
+                android:name="com.google.android.maps.v2.API_KEY"
+                android:value="@string/mapApi_key"/>
     </application>
 
 </manifest>
-
-

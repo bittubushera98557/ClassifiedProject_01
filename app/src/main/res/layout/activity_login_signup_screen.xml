@@ -117,6 +117,8 @@
                         android:background="@drawable/rectangle_rouded"
                         android:backgroundTint="@color/colorGrey"
                         android:hint="Password"
+                        app:passwordToggleEnabled="true"
+                        app:passwordToggleTint="@color/colorAccent"
                         android:textColorHint="#E28F76"
                         app:boxStrokeColor="@color/colorWhite">
 
@@ -196,7 +198,6 @@
                         android:layout_height="50dp"
                         android:background="@drawable/rectangle_rouded"
                         android:backgroundTint="@color/colorGrey"
-
                         android:hint="Email"
                         android:textColorHint="#E28F76"
                         app:boxStrokeColor="@color/colorWhite">

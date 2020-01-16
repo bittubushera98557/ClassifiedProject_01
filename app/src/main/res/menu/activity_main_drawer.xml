@@ -10,7 +10,7 @@
                 android:title="@string/menu_home"/>
         <item
                 android:id="@+id/nav_favourite"
-                android:icon="@drawable/ic_favorite"
+                android:icon="@drawable/ic_favorite_filled"
                 android:title="@string/bottom_menu_favourite"/>
         <item
                 android:id="@+id/nav_my_ads"
