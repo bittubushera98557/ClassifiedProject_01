@@ -344,7 +344,8 @@ class MyAccountFragment : Fragment(), View.OnClickListener {
         } else {
             ll_loggedInVw.visibility = View.VISIBLE
             ll_notLoggedIn.visibility = View.GONE
-
+            if(!Utility.isConnected(ctx!!))
+                Utility.snackBar(fl_myAccountFragment, "Please check internet connection ")
             getProfileData()
         }
         tv_login.setOnClickListener(this)

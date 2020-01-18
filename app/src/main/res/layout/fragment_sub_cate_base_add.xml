@@ -7,10 +7,15 @@
              android:id="@+id/fl_subCateBaseAdd"
              tools:context=".Fragments.SubCateBaseAdd">
 
-    <LinearLayout android:layout_width="match_parent"
-                  android:layout_height="match_parent"
-                  android:weightSum="100"
-                  android:orientation="vertical">
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+         android:id="@+id/swipe_refresh"
+                 android:layout_width="match_parent"
+                 android:layout_height="match_parent"
+        >
+            <LinearLayout android:layout_width="match_parent"
+                          android:layout_height="match_parent"
+                          android:weightSum="100"
+                          android:orientation="vertical">
         <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -27,8 +32,8 @@
                 android:textColor="@color/colorPrimary"
                 android:text="No Data Found"
         />
+            </LinearLayout>
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-
-    </LinearLayout>
 
 </FrameLayout>

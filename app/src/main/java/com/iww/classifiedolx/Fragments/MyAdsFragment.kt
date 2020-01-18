@@ -69,8 +69,11 @@ var TAG="MyAdsFragment "
         } else {
             ll_loggedInVw.visibility = View.VISIBLE
             ll_notLoggedIn.visibility = View.GONE
-            fetchAdvertiseList("get_Ad_by_UserId")
-        }
+
+            if(!Utility.isConnected(ctx!!))
+                Utility.snackBar(rv_myAddedAds, "Please check internet connection ")
+             fetchAdvertiseList("get_Ad_by_UserId")
+         }
 
         rv_myAddedAds.setHasFixedSize(true)
         val mLayoutManager = LinearLayoutManager(context)
@@ -171,13 +174,26 @@ catch (exp:Exception)
                   )
             }
         }, { view1: View, i: Int -> })
-        //get_all_ad($con,$CatId,$SubCatId)
-        rv_myAddedAds.layoutManager = LinearLayoutManager(context)
+         rv_myAddedAds.layoutManager = LinearLayoutManager(context)
 
+        swipe_refresh.setOnRefreshListener {
+            if (sharedPref!!.userId == "") {
+                ll_notLoggedIn.visibility = View.VISIBLE
+                ll_loggedInVw.visibility = View.GONE
+            } else {
+                ll_loggedInVw.visibility = View.VISIBLE
+                ll_notLoggedIn.visibility = View.GONE
+                if(!Utility.isConnected(ctx!!))
+                    Utility.snackBar(rv_myAddedAds, "Please check internet connection ")
+                     fetchAdvertiseList("get_Ad_by_UserId")
 
+            }
+
+        }
     }
 
     private fun fetchAdvertiseList(strApi: String) {
+        swipe_refresh.isRefreshing = true
 
         apiService!!.fetchAdsByUserIdList(strApi, sharedPref!!.userId)
             .enqueue(object : Callback<AllApiResponse.AdverResp> {
@@ -190,11 +206,13 @@ catch (exp:Exception)
                         myAdsItemData!!.clear()
                         myAdsItemData!!.addAll(response.body()!!.data)
                         rv_myAddedAds.adapter!!.notifyDataSetChanged()
-                        //    swipe_refresh.isRefreshing = false
+                         swipe_refresh.isRefreshing = false
+                        tvNoData.visibility = View.GONE
+                        rv_myAddedAds.visibility = View.VISIBLE
                     } else {
                         tvNoData.visibility = View.VISIBLE
                         rv_myAddedAds.visibility = View.GONE
-                        //swipe_refresh.isRefreshing = false
+                         swipe_refresh.isRefreshing = false
                     }
                 }
 
@@ -202,7 +220,7 @@ catch (exp:Exception)
                     t.printStackTrace()
                     tvNoData.visibility = View.VISIBLE
                     rv_myAddedAds.visibility = View.GONE
-                    //swipe_refresh.isRefreshing = false
+                     swipe_refresh.isRefreshing = false
                 }
             })
     }

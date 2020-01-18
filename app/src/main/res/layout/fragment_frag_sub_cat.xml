@@ -7,17 +7,18 @@
              android:layout_height="match_parent"
              tools:context=".Fragments.SubCatFrag">
 
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+           android:id="@+id/swipe_refresh"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent">
     <LinearLayout android:layout_width="match_parent"
                   android:orientation="vertical"
                   android:layout_height="match_parent">
-
 
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_subCatLst"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-
-
         </androidx.recyclerview.widget.RecyclerView>
         <TextView
                 android:layout_width="match_parent"
@@ -29,4 +30,5 @@
                 android:text="No Data Found"
         />
     </LinearLayout>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </FrameLayout>

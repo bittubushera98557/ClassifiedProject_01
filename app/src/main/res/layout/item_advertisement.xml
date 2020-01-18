@@ -44,6 +44,7 @@
                     <TextView android:layout_width="wrap_content"
                               android:layout_height="wrap_content"
                               android:id="@+id/tv_advertisePrice"
+                              android:ellipsize="end"
                               android:layout_marginRight="5dp"
                               android:layout_gravity="center_vertical"
                               android:text="234"
@@ -57,25 +58,27 @@
                                   android:layout_gravity="right"
                     >
                         <ImageView android:layout_width="match_parent"
-                                   android:layout_height="match_parent"
+                     android:id="@+id/iv_favImg"              android:layout_height="match_parent"
                                    app:srcCompat="@drawable/ic_favorite_empty"
                         />
                     </LinearLayout>
                 </FrameLayout>
-                <TextView android:layout_width="match_parent"
+                <TextView android:layout_width="wrap_content"
                           android:layout_height="wrap_content"
                           android:id="@+id/tv_advertiseDesc"
                           android:textSize="15sp"
+                        android:maxLines="2"
+                          android:ellipsize="end"
                           android:textColor="@color/colorBlack"
                           android:text="IT IS description of add"
 
                 />
-                <TextView android:layout_width="match_parent"
+                <TextView android:layout_width="wrap_content"
                           android:layout_height="wrap_content"
                           android:id="@+id/tv_advertiseMoreInfo"
                           android:textSize="15sp"
                           android:textColor="@color/colorBlack"
-                          android:text="IT IS description of add"
+                          android:text=""
 
                 />
             </LinearLayout>

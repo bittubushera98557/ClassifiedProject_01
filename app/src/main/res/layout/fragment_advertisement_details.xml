@@ -7,6 +7,7 @@
              android:background="#756767"
              android:layout_height="match_parent"
              tools:context=".Fragments.AdvertisementDetailsFrag">
+
     <FrameLayout android:layout_width="match_parent"
                  android:orientation="vertical"
                  android:layout_height="match_parent"
@@ -20,7 +21,7 @@
         >
             <TextView android:layout_width="0dp"
                       android:layout_weight="1"
-                android:id="@+id/tv_bottomChat"
+                      android:id="@+id/tv_bottomChat"
                       android:layout_height="match_parent"
                       android:text="MESSAGE"
                       android:gravity="center"
@@ -35,7 +36,7 @@
             <TextView android:layout_width="0dp"
                       android:layout_weight="1"
                       android:layout_height="match_parent"
-               android:id="@+id/tv_call"
+                      android:id="@+id/tv_call"
                       android:text="CALL"
                       android:gravity="center"
                       android:layout_gravity="center"
@@ -101,7 +102,9 @@
                                           android:background="@color/lightGrey"
                                           android:layout_gravity="right"
                             >
-                                <ImageView android:layout_width="match_parent"
+                                <ImageView
+                                       android:id="@+id/iv_favImg"
+                                       android:layout_width="match_parent"
                                            android:layout_height="match_parent"
                                            app:srcCompat="@drawable/ic_favorite_empty"
                                 />
@@ -110,7 +113,7 @@
                         <TextView android:layout_width="match_parent"
                                   android:layout_height="wrap_content"
                                   android:id="@+id/tv_title"
-                         android:layout_marginTop="2dp"
+                                  android:layout_marginTop="2dp"
                                   android:textSize="15sp"
                                   android:textColor="@color/colorBlack"
                                   android:text="IT is Title"
@@ -127,11 +130,11 @@
                                       android:id="@+id/tv_advertiseLoc"
                                       android:layout_marginRight="5dp"
                                       android:layout_gravity="center_vertical"
-                       android:gravity="center_vertical"               android:text="location"
+                                      android:gravity="center_vertical" android:text="location"
                                       android:drawableLeft="@drawable/ic_location"
                                       android:textSize="13sp"
                                       android:textColor="@color/colorBlack"
-                                       />
+                            />
                             <LinearLayout android:layout_width="wrap_content"
                                           android:layout_height="match_parent"
                                           android:backgroundTint="@color/lightGrey"
@@ -141,7 +144,7 @@
                                 <TextView android:layout_width="match_parent"
                                           android:layout_height="match_parent"
                                           android:id="@+id/tv_advertiseDate"
-                                           android:textSize="12sp"
+                                          android:textSize="12sp"
                                           android:textColor="@color/colorGrey"
                                           android:text="Today"
                                           android:layout_gravity="right"
@@ -152,58 +155,58 @@
 
 
                     </LinearLayout>
-                <LinearLayout
-                        android:paddingTop="10dp"
-                        android:paddingBottom="10dp"
-                        android:paddingRight="15dp"
-                        android:paddingLeft="15dp"
-android:layout_marginTop="10dp"
-                        android:layout_width="match_parent"
-              android:id="@+id/ll_fields"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:background="@color/lightGrey">
-                    <TextView android:layout_width="match_parent"
-                              android:layout_height="wrap_content"
-                       android:textStyle="bold"
-                              android:textSize="18sp"
-                      android:layout_marginTop="5dp"
-                              android:layout_marginBottom="5dp"
-                              android:textColor="@color/colorBlack"
-                              android:text="Details"
-
-                    />
-                    <LinearLayout android:layout_width="match_parent"
-                        android:orientation="horizontal"
-                                  android:layout_height="wrap_content">
-                        <TextView android:layout_width="wrap_content"
-                  android:id="@+id/tv_fieldTitle"
-                                  android:layout_height="wrap_content"
-                                    android:textSize="14sp"
-                                  android:textColor="@color/colorGrey"
-                                  android:text="Details"
-
-                        />
-                        <TextView android:layout_width="match_parent"
-                                  android:layout_height="wrap_content"
-                                  android:id="@+id/tv_fieldValue"
-                                  android:layout_marginLeft="10dp"
-                                  android:textSize="14sp"
-                                  android:textColor="@color/colorBlack"
-                                  android:text="Details"
-
-                        />
-
-                    </LinearLayout>
-
-                </LinearLayout>
                     <LinearLayout
                             android:paddingTop="10dp"
                             android:paddingBottom="10dp"
                             android:paddingRight="15dp"
                             android:paddingLeft="15dp"
                             android:layout_marginTop="10dp"
-                android:id="@+id/ll_description"
+                            android:layout_width="match_parent"
+                            android:id="@+id/ll_fields"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:background="@color/lightGrey">
+                        <TextView android:layout_width="match_parent"
+                                  android:layout_height="wrap_content"
+                                  android:textStyle="bold"
+                                  android:textSize="18sp"
+                                  android:layout_marginTop="5dp"
+                                  android:layout_marginBottom="5dp"
+                                  android:textColor="@color/colorBlack"
+                                  android:text="Details"
+
+                        />
+                        <LinearLayout android:layout_width="match_parent"
+                                      android:orientation="horizontal"
+                                      android:layout_height="wrap_content">
+                            <TextView android:layout_width="wrap_content"
+                                      android:id="@+id/tv_fieldTitle"
+                                      android:layout_height="wrap_content"
+                                      android:textSize="14sp"
+                                      android:textColor="@color/colorGrey"
+                                      android:text="Details"
+
+                            />
+                            <TextView android:layout_width="match_parent"
+                                      android:layout_height="wrap_content"
+                                      android:id="@+id/tv_fieldValue"
+                                      android:layout_marginLeft="10dp"
+                                      android:textSize="14sp"
+                                      android:textColor="@color/colorBlack"
+                                      android:text="Details"
+
+                            />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+                    <LinearLayout
+                            android:paddingTop="10dp"
+                            android:paddingBottom="10dp"
+                            android:paddingRight="15dp"
+                            android:paddingLeft="15dp"
+                            android:layout_marginTop="10dp"
+                            android:id="@+id/ll_description"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
@@ -211,7 +214,7 @@ android:layout_marginTop="10dp"
                         <TextView android:layout_width="match_parent"
                                   android:layout_height="wrap_content"
                                   android:textStyle="bold"
-                                   android:textSize="18sp"
+                                  android:textSize="18sp"
                                   android:layout_marginTop="5dp"
                                   android:layout_marginBottom="5dp"
                                   android:textColor="@color/colorBlack"
@@ -221,10 +224,10 @@ android:layout_marginTop="10dp"
                         <LinearLayout android:layout_width="match_parent"
                                       android:orientation="horizontal"
                                       android:layout_height="wrap_content">
-                              <TextView android:layout_width="match_parent"
+                            <TextView android:layout_width="match_parent"
                                       android:layout_height="wrap_content"
                                       android:textSize="14sp"
-android:id="@+id/tv_advertiseDesc"                                      android:textColor="@color/colorGrey"
+                                      android:id="@+id/tv_advertiseDesc" android:textColor="@color/colorGrey"
                                       android:text="desc text"
 
                             />
@@ -237,7 +240,7 @@ android:id="@+id/tv_advertiseDesc"                                      android:
                             android:paddingBottom="10dp"
                             android:paddingRight="15dp"
                             android:paddingLeft="15dp"
-                       android:visibility="visible"
+                            android:visibility="visible"
                             android:layout_marginTop="10dp"
                             android:id="@+id/ll_userDetail"
                             android:layout_width="match_parent"
@@ -248,41 +251,41 @@ android:id="@+id/tv_advertiseDesc"                                      android:
                                   android:layout_height="wrap_content"
                                   android:textStyle="bold"
                                   android:textSize="18sp"
-                                   android:layout_marginTop="5dp"
+                                  android:layout_marginTop="5dp"
                                   android:layout_marginBottom="15dp"
                                   android:textColor="@color/colorBlack"
                                   android:text="Posted By "
 
                         />
-                      <LinearLayout android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:weightSum="100"
-                      >
-                          <ImageView android:layout_width="100dp"
-                                     android:layout_height="100dp"
-                                     android:src="@drawable/circle_rouded"
-                                     android:tint="@color/colorAccent"
-                          />
-                          <TextView android:layout_width="wrap_content"
-                                    android:layout_height="match_parent"
-                                    android:id="@+id/tv_owmerName"
-                                    android:layout_marginLeft="20dp"
-                                    android:text="Owner Name"
-                                    android:layout_gravity="center"
-                                    android:gravity="center"
-                                    android:textSize="18sp"
-                                    android:textStyle="bold"
+                        <LinearLayout android:layout_width="match_parent"
+                                      android:layout_height="match_parent"
+                                      android:weightSum="100"
+                        >
+                            <ImageView android:layout_width="100dp"
+                                android:id="@+id/iv_"       android:layout_height="100dp"
+                                       android:src="@drawable/circle_rouded"
+                                       android:tint="@color/colorAccent"
+                            />
+                            <TextView android:layout_width="wrap_content"
+                                      android:layout_height="match_parent"
+                                      android:id="@+id/tv_owmerName"
+                                      android:layout_marginLeft="20dp"
+                                      android:text="Owner Name"
+                                      android:layout_gravity="center"
+                                      android:gravity="center"
+                                      android:textSize="18sp"
+                                      android:textStyle="bold"
 
-                          />
+                            />
 
-                      </LinearLayout>
+                        </LinearLayout>
 
                     </LinearLayout>
                     <LinearLayout
                             android:paddingTop="10dp"
                             android:paddingBottom="10dp"
                             android:paddingRight="15dp"
-                 android:visibility="visible"
+                            android:visibility="visible"
                             android:paddingLeft="15dp"
                             android:layout_marginTop="10dp"
                             android:id="@+id/ll_map"
@@ -303,27 +306,27 @@ android:id="@+id/tv_advertiseDesc"                                      android:
                         <fragment
                                 android:id="@+id/map"
                                 android:layout_width="match_parent"
-                                  android:layout_height="150dp"
-                                  class ="com.google.android.gms.maps.SupportMapFragment"
+                                android:layout_height="150dp"
+                                class="com.google.android.gms.maps.SupportMapFragment"
                         />
 
                     </LinearLayout>
 
                     <FrameLayout android:layout_width="match_parent"
-                                  android:layout_height="50dp"
-                                  android:paddingTop="10dp"
-                                  android:paddingBottom="10dp"
-                                  android:paddingRight="15dp"
-                                  android:paddingLeft="15dp"
-                                  android:layout_marginTop="10dp"
+                                 android:layout_height="50dp"
+                                 android:paddingTop="10dp"
+                                 android:paddingBottom="10dp"
+                                 android:paddingRight="15dp"
+                                 android:paddingLeft="15dp"
+                                 android:layout_marginTop="10dp"
                                  android:layout_marginBottom="50dp"
-                            android:background="@color/lightGrey"
+                                 android:background="@color/lightGrey"
                                  android:layout_gravity="bottom"
-                                  android:orientation="horizontal"
+                                 android:orientation="horizontal"
                     >
                         <TextView android:layout_width="wrap_content"
                                   android:layout_weight="1"
-                          android:id="@+id/tv_adsId"
+                                  android:id="@+id/tv_adsId"
                                   android:layout_height="match_parent"
                                   android:text="AD ID: 12345"
                                   android:gravity="center_vertical"
@@ -337,9 +340,8 @@ android:id="@+id/tv_advertiseDesc"                                      android:
                         <TextView android:layout_width="wrap_content"
                                   android:layout_weight="1"
                                   android:layout_height="match_parent"
-                                   android:text="Views: 12"
-                            android:id="@+id/tv_reportOnAdd"
-
+                                  android:text="Views: 12"
+                                  android:id="@+id/tv_reportOnAdd"
                                   android:gravity="right"
                                   android:layout_gravity="right"
                                   android:textSize="18sp"

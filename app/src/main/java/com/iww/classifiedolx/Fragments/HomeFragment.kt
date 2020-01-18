@@ -10,9 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
-import com.iww.classifiedolx.Fragments.backpressed.RootFragment
 import com.iww.classifiedolx.Listeners.OnFragmentInteractionListener
 import com.iww.classifiedolx.MainActivity
 import com.iww.classifiedolx.R
@@ -77,8 +75,11 @@ var ctx:Context?=null
              Utility.enterNextReplaceFragment(R.id.ll_homeFragment,SubCatFrag.newInstance(it1.category_Id ),(ctx as MainActivity).supportFragmentManager)
    }
         }, { view1: View, i: Int -> })
-       fetchAllMainCat("get_category")
-        rv_mainCat.layoutManager = GridLayoutManager(context, 3)
+        if(!Utility.isConnected(ctx!!))
+            Utility.snackBar(rv_mainCat,"Please check internet ")
+
+        fetchAllMainCat("get_category")
+         rv_mainCat.layoutManager = GridLayoutManager(context, 3)
 
     }
 

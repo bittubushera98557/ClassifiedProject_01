@@ -5,11 +5,9 @@ import android.content.Context
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isEmpty
 import com.glide.slider.library.SliderTypes.TextSliderView
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -20,20 +18,17 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.gson.Gson
 import com.iww.classifiedolx.Fragments.backpressed.RootFragment
 import com.iww.classifiedolx.Listeners.OnFragmentInteractionListener
-
 import com.iww.classifiedolx.R
 import com.iww.classifiedolx.Utilities.SharedPref
 import com.iww.classifiedolx.Utilities.Utility
 import com.iww.classifiedolx.api.AllApiResponse
 import com.iww.classifiedolx.api.AppConstants.IMAGE_Ad_Images
-import com.iww.classifiedolx.api.AppConstants.IMAGE_uploads_PATH
 import com.iww.classifiedolx.api.AppController
 import com.iww.classifiedolx.api.interfaces.ApiService
 import kotlinx.android.synthetic.main.fragment_advertisement_details.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.lang.Exception
 import javax.inject.Inject
 
 // TODO: Rename parameter arguments, choose names that match
@@ -60,6 +55,7 @@ class AdvertisementDetailsFrag : RootFragment(), View.OnClickListener, OnMapRead
             }
             R.id.tv_call->
             {
+                Utility.callDialog(context as Activity,""+adsDataModel!!.ownerPhone)
 
             }
 
@@ -76,6 +72,7 @@ class AdvertisementDetailsFrag : RootFragment(), View.OnClickListener, OnMapRead
     var lati="0"
     var longi="0"
 var gMap:GoogleMap?=null
+    var TAG="AdvertisementDetailsFrag "
     @Inject
     internal lateinit var apiService: ApiService
     var sharedPref: SharedPref? = null
@@ -99,21 +96,20 @@ var gMap:GoogleMap?=null
         super.onViewCreated(view, savedInstanceState)
         sharedPref = SharedPref(context)
 
-        if (Utility.isConnected(ctx!!)) {
-            getAdsDetailById()
-        } else {
+        if(!Utility.isConnected(ctx!!))
             Utility.snackBar(nsView, "Please check internet connection ")
-            onBackPressed()
-        }
+
+             getAdsDetailById()
 
         swipe_refresh.setOnRefreshListener {
-            if (Utility.isConnected(ctx!!)) {
-                getAdsDetailById()
-            } else {
+            if(!Utility.isConnected(ctx!!)) {
+                swipe_refresh.isRefreshing = false
                 Utility.snackBar(nsView, "Please check internet connection ")
                 onBackPressed()
+
             }
-        }
+             getAdsDetailById()
+         }
         tv_call.setOnClickListener(this)
         fl_AdvertisementDetailsFrag.setOnClickListener(this)
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
@@ -290,12 +286,8 @@ var gMap:GoogleMap?=null
                             }
                             if (!fullDetailsModel.fieldTitle10.equals("")) {
                                 strFieldsTitles = strFieldsTitles + fullDetailsModel.fieldTitle10 + "\n"
-
-                            }
-
-
+                             }
                         } catch (exp: Exception) {
-
                         }
                         tv_fieldTitle.text = strFieldsTitles
                         tv_adsId.text = "AD ID: " + fullDetailsModel.id
@@ -304,20 +296,50 @@ var gMap:GoogleMap?=null
                         if (fullDetailsModel.showMobile.equals("1")) {
                             tv_call.visibility = View.VISIBLE
                         }
+
+                        iv_favImg.setOnClickListener {
+                            if (!fullDetailsModel.ownerId.equals(sharedPref!!.userId)) {
+                                if (fullDetailsModel.favorite.equals("0")) {
+
+                                    if (Utility.isConnected(ctx!!))
+                                        callChangeFavApi("add_fav_ads", fullDetailsModel)
+                                    else
+                                        Utility.snackBar(slider, "Please check internet ")
+
+                                } else {
+                                    if (Utility.isConnected(ctx!!))
+                                        callChangeFavApi("delete_fav_ads", fullDetailsModel)
+                                    else
+                                        Utility.snackBar(slider, "Please check internet ")
+
+                                }
+                            }
+                            else{
+                                Utility.snackBar(slider, "You cannot add in favourite to it, it is your own ads")
+
+                            }
+                        }
+                        if(fullDetailsModel.favorite.equals("1"))
+                        {
+                            iv_favImg.setImageResource(R.drawable.ic_favorite_filled)
+                            //iv_favImg.setImageResource(R.drawable.ic_favorite_filled)
+                        }else{
+                            iv_favImg.setImageResource(R.drawable.ic_favorite_empty)
+
+                        }
+
                         if(!fullDetailsModel.lat.equals("") && !fullDetailsModel.lng.equals(""))
                         {
                             lati=fullDetailsModel.lat
                             longi=fullDetailsModel.lng
                             val  latLong = LatLng(lati.toDouble(), longi.toDouble())
                               val cameraPosition = CameraPosition.Builder().target(latLong).zoom(15f).build()//.tilt(70f).build()
-
-//                                 gMap!!.isMyLocationEnabled = false
+ //                                 gMap!!.isMyLocationEnabled = false
                             gMap!!.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition))
                         }
                     } else {
                         Utility.snackBar(nsView, "" + response.body()!!.message)
-
-                    }
+                     }
                 }
 
                 override fun onFailure(call: Call<AllApiResponse.AdverFullDetailResp>, t: Throwable) {
@@ -326,6 +348,40 @@ var gMap:GoogleMap?=null
 
                 }
             })
+    }
+
+    private fun callChangeFavApi(
+        strAction: String,
+        dataModel: AllApiResponse.AdverFullDetailResp.AdverFullDetailModel?
+    ) {
+
+        Log.e(TAG,"callChangeFavApi   adsId="+dataModel!!.id+"   action="+strAction)
+
+        apiService!!.addInFav(""+strAction ,""+sharedPref!!.userId, dataModel!!.id).enqueue(object : Callback<AllApiResponse.CommonRes> {
+            override fun onResponse(
+                call: Call<AllApiResponse.CommonRes>,
+                response: Response<AllApiResponse.CommonRes>
+            ) {
+                Log.e("callAddInFavApi res", "" + Gson().toJson(response.body()))
+                if (response.isSuccessful && (response.body()!!.status.equals("1"))) {
+                    if(strAction.equals("add_fav_ads"))
+                        dataModel!!.favorite="1"
+                    if(strAction.equals("delete_fav_ads"))
+                        dataModel!!.favorite="0"
+
+
+                } else {
+                    //swipe_refresh.isRefreshing = false
+                }
+            }
+
+            override fun onFailure(call: Call<AllApiResponse.CommonRes>, t: Throwable) {
+                t.printStackTrace()
+
+                //swipe_refresh.isRefreshing = false
+            }
+        })
+
     }
 
 

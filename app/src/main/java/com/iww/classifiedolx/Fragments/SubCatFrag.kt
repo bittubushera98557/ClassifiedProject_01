@@ -53,8 +53,7 @@ class SubCatFrag : Fragment() {
     @SuppressLint("WrongConstant")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        subCatItemData = mutableListOf()
+         subCatItemData = mutableListOf()
         rv_subCatLst.setHasFixedSize(true)
         val mLayoutManager = LinearLayoutManager(context)
         mLayoutManager.orientation = LinearLayoutManager.VERTICAL
@@ -71,16 +70,23 @@ class SubCatFrag : Fragment() {
                 )
             }
         }, { view1: View, i: Int -> })
+        if(!Utility.isConnected(ctx!!))
+            Utility.snackBar(rv_subCatLst, "Please check internet connection ")
         fetchAllSubCat("get_subcategory")
         rv_subCatLst.layoutManager = LinearLayoutManager(context)
 
+        swipe_refresh.setOnRefreshListener {
+            if(!Utility.isConnected(ctx!!))
+                Utility.snackBar(rv_subCatLst, "Please check internet connection ")
+            fetchAllSubCat("get_subcategory")
+        }
 
     }
 
 
 
     private fun fetchAllSubCat(strApi: String) {
-
+        swipe_refresh.isRefreshing =  true
         apiService!!.fetchSubCategory(strApi, mainCatId).enqueue(object : Callback<AllApiResponse.SubCategoryRes> {
             override fun onResponse(
                 call: Call<AllApiResponse.SubCategoryRes>,
@@ -91,11 +97,14 @@ class SubCatFrag : Fragment() {
                     subCatItemData!!.clear()
                     subCatItemData!!.addAll(response.body()!!.data)
                     rv_subCatLst.adapter!!.notifyDataSetChanged()
-                    //    swipe_refresh.isRefreshing = false
+                     swipe_refresh.isRefreshing = false
+                    rv_subCatLst.visibility = View.VISIBLE
+                    tvNoData.visibility = View.GONE
+
                 } else {
                     tvNoData.visibility = View.VISIBLE
                     rv_subCatLst.visibility = View.GONE
-                    //swipe_refresh.isRefreshing = false
+                     swipe_refresh.isRefreshing = false
                 }
             }
 
@@ -103,7 +112,7 @@ class SubCatFrag : Fragment() {
                 t.printStackTrace()
                 tvNoData.visibility = View.VISIBLE
                 rv_subCatLst.visibility = View.GONE
-                //swipe_refresh.isRefreshing = false
+                 swipe_refresh.isRefreshing = false
             }
         })
     }

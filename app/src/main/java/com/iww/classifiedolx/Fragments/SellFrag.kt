@@ -97,6 +97,8 @@ class SellFrag : Fragment(), View.OnClickListener {
             }
         }, { view1: View, i: Int -> })
         fetchAllMainCat("get_category")
+        if(!Utility.isConnected(ctx!!))
+            Utility.snackBar(rv_allMainCat, "Please check internet connection ")
         rv_allMainCat.layoutManager = GridLayoutManager(context, 3)
 
     }

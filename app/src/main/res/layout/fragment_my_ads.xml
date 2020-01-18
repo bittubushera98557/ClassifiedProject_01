@@ -53,22 +53,35 @@
                   android:weightSum="100"
                   android:id="@+id/ll_loggedInVw"
                        android:orientation="vertical">
-        <androidx.recyclerview.widget.RecyclerView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/rv_myAddedAds"
-        ></androidx.recyclerview.widget.RecyclerView>
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+               android:id="@+id/swipe_refresh"
+               android:layout_width="match_parent"
+                                                               android:layout_height="match_parent">
 
-        <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:visibility="gone"
-                android:id="@+id/tvNoData"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:textColor="@color/colorPrimary"
-                android:text="No Data Found"
-        />
+            <LinearLayout android:layout_width="match_parent"
+                          android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/rv_myAddedAds"
+                ></androidx.recyclerview.widget.RecyclerView>
+
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:visibility="gone"
+                        android:id="@+id/tvNoData"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:textColor="@color/colorPrimary"
+                        android:text="No Data Found"
+                />
+
+            </LinearLayout>
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 
     </LinearLayout>

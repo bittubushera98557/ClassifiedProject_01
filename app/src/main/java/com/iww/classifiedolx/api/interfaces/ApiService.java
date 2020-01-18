@@ -27,7 +27,7 @@ public interface ApiService {
 
     @FormUrlEncoded
     @POST("json.php")
-    Call<AllApiResponse.AdverResp> fetchAdsList(@Field("action") String action, @Field("CatId") String CatId, @Field("SubCatId") String SubCatId);
+    Call<AllApiResponse.AdverResp> fetchAdsList(@Field("action") String action, @Field("CatId") String CatId, @Field("SubCatId") String SubCatId, @Field("User_Id") String User_Id );
 
 
     @FormUrlEncoded
@@ -99,7 +99,14 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("json.php")
     Call<AllApiResponse.AdverFullDetailResp> getAdsDetailById(@Field("action") String action, @Field("Ads_Id") String Ads_Id);
-    //get_ads_detail_by_id     (Ads_Id)
+
+    @FormUrlEncoded
+    @POST("json.php")
+    Call<AllApiResponse.AdverResp> getAllFavAdsLst(@Field("action") String action, @Field("User_Id") String User_Id);
+
+    @FormUrlEncoded
+    @POST("json.php")
+    Call<AllApiResponse.CommonRes> addInFav(@Field("action") String action, @Field("User_Id") String User_Id ,@Field("Ads_Id") String Ads_Id);
 
 
 
